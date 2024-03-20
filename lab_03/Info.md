@@ -60,7 +60,7 @@ modificarea acestora, astfel:
 #### Records
 - Introduse in Java 15;
 - Clasa imutabila;
-- Utilizate pentru incarcarea unor date dintr-o anumita sursa, spre eventual intr-o destinatie;
+- Utilizate pentru incarcarea unor date dintr-o anumita sursa, spre eventual o destinatie;
 - Definirea unui nou record
 ```
 [modificatori de acces] record denumire (descriptor) {}
