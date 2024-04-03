@@ -1,18 +1,18 @@
 # Laboratorul - 05
 
 ### Exceptii
-O excepţie este un eveniment care se produce în timpul execuţiei unui program şi care perturbă fluxul normal al instrucţiunilor acestuia.
+O exceptie este un eveniment care se produce in timpul executiei unui program si care perturba fluxul normal al instructiunilor acestuia.
 
 E.g. in cadrul unui program ce prelucreaza un fisier:
-- Absenţa fişierului;
+- Absenta fisierului;
 - Imposibilitatea de a-l citi din cauza permisiunilor insuficiente;
-- Probleme cauzate de accesul concurent la fişier;
+- Probleme cauzate de accesul concurent la fisier;
 
-Când o eroare se produce într-o funcţie, aceasta creează un obiect excepţie şi îl pasează către runtime system. Un astfel de obiect conţine informaţii despre situaţia apărută:
-- Tipul de excepţie;
+Cand o eroare se produce intr-o functie, aceasta creeaza un obiect exceptie si il paseaza catre runtime system. Un astfel de obiect contine informatii despre situatia aparuta:
+- Tipul de exceptie;
 - Stiva de apeluri (**stack trace**);
 
-#### Aruncarea excepţiilor
+#### Aruncarea exceptiilor
 ```
 var l = getArrayListObject();
 if (l == null)
@@ -20,17 +20,17 @@ if (l == null)
 ```
 
 ##### Observatii
-- Un obiect-excepţie este un obiect ca oricare altul, şi se instanţiază la fel (folosind **new**);
-- Aruncarea excepţiei se face folosind keyword-ul **throw**;
-- Există clasa **Exception** care desemnează comportamentul specific pentru excepţii.
-  - Clasa **Exception** este părintele majorităţii claselor excepţie din Java.
+- Un obiect-exceptie este un obiect ca oricare altul, si se instantiaza la fel (folosind **new**);
+- Aruncarea exceptiei se face folosind keyword-ul **throw**;
+- Exista clasa **Exception** care desemneaza comportamentul specific pentru exceptii.
+  - Clasa **Exception** este parintele majoritatii claselor exceptie din Java.
   - Exemple de exceptii comun intalnite:
-    - **IndexOutOfBoundsException**: este aruncată când un index asociat unei liste sau unui vector depăşeşte dimensiunea colecţiei respective.
-    - NullPointerException: este aruncată când se accesează un obiect neinstanţiat (**null**).
-- În momentul în care se instanţiază un obiect-excepţie, în acesta se reţine **întregul** lanţ de apeluri de funcţii prin care s-a ajuns la instrucţiunea curentă. Această succesiune se numeşte stack trace şi se poate afişa prin apelul **e.printStackTrace()**, unde e este obiectul excepţie.
+    - **IndexOutOfBoundsException**: este aruncata cand un index asociat unei liste sau unui vector depaseste dimensiunea colectiei respective.
+    - NullPointerException: este aruncata cand se acceseaza un obiect neinstantiat (**null**).
+- in momentul in care se instantiaza un obiect-exceptie, in acesta se retine **intregul** lant de apeluri de functii prin care s-a ajuns la instructiunea curenta. Aceasta succesiune se numeste stack trace si se poate afisa prin apelul **e.printStackTrace()**, unde e este obiectul exceptie.
 
 #### Traterea exceptiilor
-Când o excepţie a fost **aruncată**, runtime system încearcă să o **trateze** (**prindă**). Tratarea unei excepţii este făcută de o porţiune de cod specială.
+Cand o exceptie a fost **aruncata**, **runtime system** incearca sa o **trateze** (**prinda**). Tratarea unei exceptii este facuta de o portiune de cod speciala.
 ```
 public void f() throws Exception {
     List<String> l = null;
@@ -47,16 +47,16 @@ public void catchFunction() {
     }
 }
 ```
-Se observă că dacă o funcţie aruncă o excepţie şi nu o prinde trebuie, în **general**, să adauge clauza **throws** în **antet**.
+Se observa ca daca o functie arunca o exceptie si nu o prinde trebuie, in **general**, sa adauge clauza **throws** in **antet**.
 
-Funcţia **catchFunction**:
-- Pentru a prinde o excepţie, trebuie să specificăm o zonă în care aşteptăm ca excepţia să se producă (**guarded region**). Această zonă este introdusă prin blocul **try**;
-- In continuare, avem blocul **catch (Exception e)**. La producerea excepţiei, blocul catch corespunzător va fi executat. După aceea, programul va continua să ruleze normal în continuare;
+Functia **catchFunction**:
+- Pentru a prinde o exceptie, trebuie sa specificam o zona in care asteptam ca exceptia sa se produca (**guarded region**). Aceasta zona este introdusa prin blocul **try**;
+- In continuare, avem blocul **catch (Exception e)**. La producerea exceptiei, blocul catch corespunzator va fi executat. Dupa aceea, programul va continua sa ruleze normal in continuare;
   - Trebuie sa tinem cont de ordinea in care blocurile sunt definite astfel incat exceptiile sa porneasca de la specific spre generic (e.g. primul catch **IOException**, urmat de alt catch cu **Exception** si nu invers);
 
 ##### Observatii
-- Putem defini mai multe blocuri catch pentru a implementa o tratare preferenţială a excepţiilor, în funcţie de tipul acestora;
-- In cazul aruncării unei excepții într-un bloc try, se va intra într-un **singur bloc catch** (cel aferent excepției aruncate);
+- Putem defini mai multe blocuri catch pentru a implementa o tratare preferentiala a exceptiilor, in functie de tipul acestora;
+- In cazul aruncarii unei excepții intr-un bloc try, se va intra intr-un **singur bloc catch** (cel aferent excepției aruncate);
 - Blocurile **try-catch** pot fi imbricate;
 
 #### Blocul finally
@@ -64,34 +64,34 @@ Funcţia **catchFunction**:
 - Ne este util in cazuri in care avem nevoie sa executam o sectiune de cod indiferent de rezultatul din **try**, e.g. inchiderea unui stream I/O.
 
 #### Try-with-resources
-Din Java 7, a fost adăugată construcția try-with-resources, care ne permite să declarăm resursele într-un bloc try, cu asigurarea că resursele vor fi închise după executarea acelui bloc. Resursele declarate trebuie să implementeze interfața **AutoCloseable**.
+Din Java 7, a fost adaugata construcția try-with-resources, care ne permite sa declaram resursele intr-un bloc try, cu asigurarea ca resursele vor fi inchise dupa executarea acelui bloc. Resursele declarate trebuie sa implementeze interfața **AutoCloseable**.
 ```
 try (PrintWriter writer = new PrintWriter(file)) {
     writer.println("Hello World");
 }
 ```
 
-#### Tipuri de excepţii
-Nu toate excepţiile trebuie prinse cu try-catch. Pentru a înțelege de ce, să analizăm clasificarea excepţiilor:
+#### Tipuri de exceptii
+Nu toate exceptiile trebuie prinse cu try-catch. Pentru a ințelege de ce, sa analizam clasificarea exceptiilor:
 - Clasa **Throwable**
   - Superclasa tuturor erorilor și excepțiilor din Java;
-  - Doar obiectele ce extind această clasă pot fi aruncate de către JVM sau prin instrucțiunea **throw**;
-  - Numai această clasă sau una dintre subclasele sale pot fi tipul de argument într-o clauză catch.
+  - Doar obiectele ce extind aceasta clasa pot fi aruncate de catre JVM sau prin instrucțiunea **throw**;
+  - Numai aceasta clasa sau una dintre subclasele sale pot fi tipul de argument intr-o clauza catch.
 - **Checked exceptions**, ce corespund clasei **Exception**
-  - O aplicaţie ar trebui să le **prindă** şi să permită **continuarea** rulării programului.
+  - O aplicatie ar trebui sa le **prinda** si sa permita **continuarea** rularii programului.
   - E.g. **FileNotFoundException** cauzata din input uman.
 - **Errors**, ce corespund clasei **Error**
-  - Acestea definesc situaţii excepţionale declanşate de factori **externi** aplicaţiei, pe care aceasta nu le poate anticipa şi nu-şi poate reveni, dacă se produc.
+  - Acestea definesc situatii exceptionale declansate de factori **externi** aplicatiei, pe care aceasta nu le poate anticipa si nu-si poate reveni, daca se produc.
   - E.g. **OutOfMemoryError** cauzata de alocarea unui obiect de dimensiuni prea mari.
-  - Aplicaţia poate încerca să prindă această eroare, pentru a **anunţa** utilizatorul despre problema apărută; după aceasta însă, programul **va eşua** (afişând eventual stack trace).
+  - Aplicatia poate incerca sa prinda aceasta eroare, pentru a **anunta** utilizatorul despre problema aparuta; dupa aceasta insa, programul **va esua** (afisand eventual stack trace).
 - **Runtime Exceptions**, ce corespund clasei **RuntimeException**
-  - Ca şi erorile, acestea sunt condiţii excepţionale, însă, spre deosebire de erori, ele sunt declanşate de factori **interni** aplicaţiei. Aplicaţia nu poate anticipa şi **nu** îşi poate reveni dacă acestea sunt aruncate.
-  - **Runtime exceptions** sunt produse de diverse bug-uri de programare (erori de logică în aplicaţie, folosire necorespunzătoare a unui API, etc).
+  - Ca si erorile, acestea sunt conditii exceptionale, insa, spre deosebire de erori, ele sunt declansate de factori **interni** aplicatiei. Aplicatia nu poate anticipa si **nu** isi poate reveni daca acestea sunt aruncate.
+  - **Runtime exceptions** sunt produse de diverse bug-uri de programare (erori de logica in aplicatie, folosire necorespunzatoare a unui API, etc).
   - E.g. **NullPointerException** cauzata de apelarea unei metode pe o referinta cu valoarea **null**.
 
-Excepţiile **checked** sunt cele prinse de blocurile try-catch. **Toate** excepţiile sunt checked, mai puțin cele de tip **Error**, **RuntimeException** şi **subclasele acestora**, adică cele de tip **unchecked**.
+Exceptiile **checked** sunt cele prinse de blocurile try-catch. **Toate** exceptiile sunt checked, mai puțin cele de tip **Error**, **RuntimeException** si **subclasele acestora**, adica cele de tip **unchecked**.
 
-Putem arunca RuntimeException **fără** să o menţionăm în clauza throws din antet
+Putem arunca RuntimeException **fara** sa o mentionam in clauza throws din antet
 ```
 public void f(Object o) {
     if (o == null)
@@ -99,11 +99,11 @@ public void f(Object o) {
 }
 ```
 
-#### Excepţiile în contextul moştenirii
-Metodele suprascrise (**overriden**) pot arunca **numai** excepţiile specificate de metoda din **clasa de bază** sau excepţii **derivate** din acestea.
+#### Exceptiile in contextul mostenirii
+Metodele suprascrise (**overriden**) pot arunca **numai** exceptiile specificate de metoda din **clasa de baza** sau exceptii **derivate** din acestea.
 
 #### Definirea exceptiilor
-Când aveţi o situaţie în care alegerea unei excepţii (de aruncat) nu este evidentă, puteţi opta pentru a scrie propria voastră excepţie, care să extindă Exception, RuntimeException sau Error.
+Cand aveti o situatie in care alegerea unei exceptii (de aruncat) nu este evidenta, puteti opta pentru a scrie propria voastra exceptie, care sa extinda Exception, RuntimeException sau Error.
 ```
 class TemperatureException extends Exception {}
  
@@ -150,9 +150,9 @@ input.close(); // sau try-with-resources
 Permite operații specifice fișierelor și directoarelor, precum creare, ștergere, mutare etc., mai puțin operații de citire/scriere.
 
 ##### Metode
-- **String getAbsolutePath()** – returnează calea absolută a unui fișier;
-- **String getName()** – returnează numele unui fișier;
-- **boolean createNewFile()** – creează un nou fișier, iar dacă fișierul există deja metoda returnează false;
+- **String getAbsolutePath()** – returneaza calea absoluta a unui fișier;
+- **String getName()** – returneaza numele unui fișier;
+- **boolean createNewFile()** – creeaza un nou fișier, iar daca fișierul exista deja metoda returneaza false;
 - **File[] listFiles()** – listeaza fisierele dintr-un director;
 
 #### DataInputStream & DataOutputStream
