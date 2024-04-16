@@ -1,4 +1,4 @@
-# Laboratorul - 05
+# Laboratorul - 06
 
 ### JDBC
 - Java Database Connectivity (JDBC) este un API oferit de limbaj care faciliteaza operatiile cu sistemele de baze de date;
