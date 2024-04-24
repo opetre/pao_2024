@@ -3,6 +3,6 @@ Scrieti un program care sa elimine duplicatele dintr-o lista folosind stream-uri
 
 ### Task 1
 Creati o clasa POJO la alegere cu min 1 field;
-Definiti o List<List<Clasa voastra>>;
+Definiti o List\<List\<Clasa voastra\>\>;
 Folosind stream-uri agregati rezultatul in functie de field-ul clasei intr-o collectie de tip Map.
-ex: clasa Student{int varsta;} => un Map cu chei ce reprezinta varsta (ex 15/16/18 ani) si are valori de tip List<Clasa voastra>;
+ex: clasa Student{int varsta;} => un Map cu chei ce reprezinta varsta (ex 15/16/18 ani) si are valori de tip List\<Clasa voastra\>;
